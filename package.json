@@ -1,0 +1,27 @@
+{
+  "name": "rimdock-site",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rimraf dist",
+    "copy:all": "cpx \"src/**/*\" dist --ignore=\"**/*.pug\"",
+    "build:pug": "pug src/pug/pages/ -o dist/ -P",
+    "build": "npm run clean && npm run copy:all && npm run build:pug",
+    "watch:copy": "cpx -w \"src/**/*\" dist --ignore=\"**/*.pug\"",
+    "watch:pug": "pug -w src/ -o dist/ -P",
+    "serve": "browser-sync start --server 'dist' --files 'dist/**/*'",
+    "start": "npm run build && concurrently \"npm run watch:copy\" \"npm run watch:pug\" \"npm run serve\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^3.0.4",
+    "concurrently": "^10.0.6",
+    "cpx2": "^9.0.3",
+    "pug": "^3.0.4",
+    "pug-cli": "^1.0.0-alpha6",
+    "rimraf": "^6.1.3"
+  }
+}
